@@ -15,7 +15,7 @@ export const TiposBasicos = () => {
             <h3>Tipos Básicos</h3>   
             {nombre}, {edad}, {(estaActivo) ? 'Activo' : 'No Activo'}
             <br/>
-            {poderes.join(' , ')}
+            {poderes.join(' , ')}            
         </>
     )
 }
