@@ -16,7 +16,6 @@ export const ContadorConHook = () => {
             onClick={ ()=> acumular(-1)}>
                 -1
             </button>
-        </>    
-        
+        </>
     )
 }
