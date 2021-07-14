@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react"
-import { GETUsers } from '../api/GETUsers';
-import { UserResponse, Usuario } from "../interfaces/UserResponse";
+import { Usuario } from "../interfaces/UserResponse";
+import { useUsuarios } from '../hooks/useUsuarios';
 
 export const Usuarios = () => {
 
-    const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-
-    useEffect(() => {
-        GETUsers.get<UserResponse>('/users').then(resp => {
-            setUsuarios(resp.data.data);            
-        })
-        .catch( console.log );
-    }, [])
+    const { usuarios,backPage,nextPage } = useUsuarios();
 
     const renderItem = ( usuario: Usuario) =>{
             return(
@@ -45,13 +37,20 @@ export const Usuarios = () => {
               </thead>
               <tbody>
                     {
-                        usuarios.map( usuario => renderItem(usuario) )
+                        usuarios.map( renderItem )
                     }
               </tbody>
           </table>
 
           <button 
-                className="btn btn-primary">
+                className="btn btn-primary"
+                onClick={backPage}>
+                    Anteriores
+          </button>
+                    &nbsp;
+          <button 
+                className="btn btn-primary"
+                onClick={nextPage}>
                     Siguientes
           </button>
 
