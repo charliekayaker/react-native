@@ -3,7 +3,8 @@ import { useUsuarios } from '../hooks/useUsuarios';
 
 export const Usuarios = () => {
 
-    const { usuarios,backPage,nextPage } = useUsuarios();
+    /*{ const { usuarios,backPage,nextPage } = useUsuarios(); }*/
+    const { usuarios,movePage } = useUsuarios();
 
     const renderItem = ( usuario: Usuario) =>{
             return(
@@ -44,13 +45,13 @@ export const Usuarios = () => {
 
           <button 
                 className="btn btn-primary"
-                onClick={backPage}>
+                onClick={() => movePage('B')}>
                     Anteriores
           </button>
                     &nbsp;
           <button 
                 className="btn btn-primary"
-                onClick={nextPage}>
+                onClick={() => movePage('N')}>
                     Siguientes
           </button>
 

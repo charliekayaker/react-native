@@ -67,6 +67,8 @@ export const useUsuarios = () => {
 
             if( paginaRef.current > 1){
                 paginaRef.current--;
+            }else{
+                alert('NO HAY MÁS PAPÁ');
             }
  
         }else{
@@ -79,8 +81,9 @@ export const useUsuarios = () => {
 
     return {
         usuarios,
-        backPage,
-        nextPage,
+        movePage,        
+        /*{backPage,
+        nextPage, }*/
     }
 }
 
