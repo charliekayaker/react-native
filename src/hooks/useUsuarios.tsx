@@ -12,8 +12,36 @@ export const useUsuarios = () => {
     }, [])
     
   
-  
-    const loadUsers = async() =>{
+    const loadUsers = async () => {
+       
+        const resp = await getUsers.get<UserResponse>('/users', {
+            params:{
+                page: paginaRef.current
+            }
+        })
+
+        if(resp.data.data.length > 0){
+            setUsuarios(resp.data.data);            
+        }else{
+            paginaRef.current--;            
+            alert('No hay más registros');
+        }
+            
+    }
+
+    const backPage = () => {
+        if( paginaRef.current > 1){
+            paginaRef.current --;
+            loadUsers();
+        }        
+    }
+
+    const nextPage = () => {
+        paginaRef.current++;
+        loadUsers();
+    }
+
+    const loadUserss = async() =>{
         
         const resp = await getUsers.get<UserResponse>('/users', {
             params:{
@@ -48,12 +76,14 @@ export const useUsuarios = () => {
             throw errorMessage;
         }
         
-        loadUsers();
+        loadUserss();
     }
 
     return {
         usuarios,
-        movePage,     
+        movePage,        
+        /*{backPage,
+        nextPage, }*/
     }
 }
 
